@@ -1,8 +1,11 @@
 import org.junit.Before;
 import org.junit.Test;
 
+import java.io.BufferedReader;
 import java.io.PrintStream;
 
+import static org.hamcrest.CoreMatchers.is;
+import static org.hamcrest.MatcherAssert.assertThat;
 import static org.mockito.Mockito.*;
 
 /**
@@ -27,7 +30,15 @@ public class TicTacToeTests {
 
     @Test
     public void shouldPrintBoardWhenGameStarts() {
+        when(gameBufferedReader.readLine()).thenReturn("1");
         ticTacToe.playGame();
         verify(board).printBoard();
     }
+
+//    @Test
+//    public void shouldGetFirstPlayFromPlayerWhenGameStarts() {
+//        when(gameBufferedReader.readLine()).thenReturn("1");
+//        ticTacToe.playGame();
+//        assertThat(player.getNextMove(), is(1));
+//    }
 }

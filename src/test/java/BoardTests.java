@@ -2,7 +2,10 @@ import org.junit.Before;
 import org.junit.Test;
 
 import java.io.PrintStream;
+import java.util.ArrayList;
 
+import static org.hamcrest.CoreMatchers.is;
+import static org.hamcrest.MatcherAssert.assertThat;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
@@ -14,23 +17,25 @@ public class BoardTests {
 
     private Board board;
     private PrintStream printStream;
+    private ArrayList<String> mockList;
 
     @Before
     public void setUp() {
         printStream = mock(PrintStream.class);
-        board = new Board(printStream);
+        mockList = mock(ArrayList.class);
+        board = new Board(mockList, printStream);
     }
 
     @Test
     public void shouldPrintBoardWhenPrintBoardMethodIsCalled() {
-        board = new Board(printStream);
         board.printBoard();
         verify(printStream, times(3)).println("   |   |");
         verify(printStream, times(2)).println("-----------");
     }
 
     @Test
-    public void shouldContainXInCorrectPositionWhenPlayerMakesMove() {
-
+    public void positionShouldNotBeAvailableAfterMarkingPosition() {
+        board.updateBoard(1, "X");
+        assertThat(board.isPositionAvailable(1), is(false));
     }
 }
