@@ -6,20 +6,14 @@ import java.io.PrintStream;
 public class TicTacToe {
 
     private PrintStream printStream;
+    private Board board;
 
-    public TicTacToe(PrintStream printStream) {
-
+    public TicTacToe(PrintStream printStream, Board board) {
         this.printStream = printStream;
+        this.board = board;
     }
 
-    public void printBoard() {
-        for(int i = 1; i <= 5; i++) {
-            if (i%2 == 1) {
-                printStream.println("   |   |");
-            }
-            else {
-                printStream.println("-----------");
-            }
-        }
+    public void playGame() {
+        board.printBoard();
     }
 }

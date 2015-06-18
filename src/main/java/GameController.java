@@ -10,10 +10,10 @@ public class GameController {
     }
 
     public void start() {
-        ticTacToe.printBoard();
+        ticTacToe.playGame();
     }
 
     public static void main(String[] args) {
-        new GameController(new TicTacToe(System.out)).start();
+        new GameController(new TicTacToe(System.out, new Board(System.out))).start();
     }
 }
