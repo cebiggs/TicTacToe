@@ -5,10 +5,12 @@ import java.io.PrintStream;
  */
 public class TicTacToe {
 
+    private GameBufferedReader gameBufferedReader;
     private PrintStream printStream;
     private Board board;
 
-    public TicTacToe(PrintStream printStream, Board board) {
+    public TicTacToe(Board board, GameBufferedReader gameBufferedReader, PrintStream printStream) {
+        this.gameBufferedReader = gameBufferedReader;
         this.printStream = printStream;
         this.board = board;
     }
@@ -16,4 +18,5 @@ public class TicTacToe {
     public void playGame() {
         board.printBoard();
     }
+
 }
