@@ -1,12 +1,8 @@
 import org.junit.Before;
 import org.junit.Test;
-import org.mockito.Mockito;
 
-import java.io.BufferedReader;
 import java.io.PrintStream;
 
-import static org.hamcrest.CoreMatchers.is;
-import static org.hamcrest.MatcherAssert.assertThat;
 import static org.mockito.Mockito.*;
 
 /**
@@ -28,7 +24,7 @@ public class TicTacToeTests {
         board = mock(Board.class);
         player1 = mock(Player.class);
         player2 = mock(Player.class);
-        ticTacToe = new TicTacToe(board, player1, player2, gameBufferedReader, printStream);
+        ticTacToe = new TicTacToe(board, player1, player2);
     }
 
     @Test

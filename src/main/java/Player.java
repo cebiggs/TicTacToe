@@ -1,5 +1,4 @@
 import java.io.PrintStream;
-import java.text.NumberFormat;
 
 /**
  * Created by cbiggs on 6/18/15.
