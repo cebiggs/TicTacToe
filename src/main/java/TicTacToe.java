@@ -22,6 +22,7 @@ public class TicTacToe {
     public void playGame() {
         board.printBoard();
         board.updateBoard(player1.getNextMove(), player1.getSymbol());
+        board.printBoard();
     }
 
 }

@@ -1,5 +1,6 @@
 import org.junit.Before;
 import org.junit.Test;
+import org.mockito.Mockito;
 
 import java.io.BufferedReader;
 import java.io.PrintStream;
@@ -34,7 +35,7 @@ public class TicTacToeTests {
     public void shouldPrintBoardWhenGameStarts() {
         when(gameBufferedReader.readLine()).thenReturn("1");
         ticTacToe.playGame();
-        verify(board).printBoard();
+        verify(board, atLeastOnce()).printBoard();
     }
 
     @Test
@@ -42,6 +43,7 @@ public class TicTacToeTests {
         when(player1.getNextMove()).thenReturn(1);
         when(player1.getSymbol()).thenReturn('X');
         ticTacToe.playGame();
-        verify(board).updateBoard(player1.getNextMove(), player1.getSymbol());
+        verify(board, atLeastOnce()).updateBoard(player1.getNextMove(), player1.getSymbol());
+        verify(board, atLeast(2)).printBoard();
     }
 }
