@@ -23,7 +23,7 @@ public class PlayerTests {
     public void setUp() {
         printStream = mock(PrintStream.class);
         gameBufferedReader = mock(GameBufferedReader.class);
-        player = new Player("X", gameBufferedReader, printStream);
+        player = new Player('X', gameBufferedReader, printStream);
     }
 
     @Test

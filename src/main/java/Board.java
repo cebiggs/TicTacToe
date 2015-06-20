@@ -7,38 +7,31 @@ import java.util.List;
  */
 public class Board {
 
-    private List<String> board;
+    private char[] board;
     private PrintStream printStream;
 
-    public Board( List<String> board, PrintStream printStream ) {
+    public Board( char[] board, PrintStream printStream ) {
         this.board = board;
         this.printStream = printStream;
-        setUpBoard();
+        initializeBoard();
     }
 
     public void printBoard() {
-        printStream.println("" +
-                "   |   |   \n" +
+        printStream.printf("" +
+                " %c | %c | %c \n" +
                 "-----------\n" +
-                "   |   |   \n" +
+                " %c | %c | %c \n" +
                 "-----------\n" +
-                "   |   |   ");
+                " %c | %c | %c ", board[1], board[2], board[3], board[4], board[5], board[6], board[7], board[8], board[9]);
     }
 
-    public void updateBoard(int index, String mark) {
-
+    public void updateBoard(int index, char mark) {
+        board[index] = mark;
     }
 
-    public boolean isPositionAvailable( int index ) {
-        if (board.get(index) == "null") {
-            return true;
+    private void initializeBoard() {
+        for(int i = 1; i <= 9; i++) {
+            board[i] = ' ';
         }
-        else {
-            return false;
-        }
-    }
-
-    private void setUpBoard() {
-
     }
 }

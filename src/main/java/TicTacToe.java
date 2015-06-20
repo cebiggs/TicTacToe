@@ -11,14 +11,17 @@ public class TicTacToe {
     private Player player1;
     private Player player2;
 
-    public TicTacToe(Board board, GameBufferedReader gameBufferedReader, PrintStream printStream) {
+    public TicTacToe(Board board, Player player1, Player player2, GameBufferedReader gameBufferedReader, PrintStream printStream) {
         this.gameBufferedReader = gameBufferedReader;
         this.printStream = printStream;
         this.board = board;
+        this.player1 = player1;
+        this.player2 = player2;
     }
 
     public void playGame() {
         board.printBoard();
+        board.updateBoard(player1.getNextMove(), player1.getSymbol());
     }
 
 }

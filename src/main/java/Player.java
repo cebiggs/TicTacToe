@@ -6,11 +6,11 @@ import java.text.NumberFormat;
  */
 public class Player {
 
-    private String symbol;
+    private char symbol;
     private GameBufferedReader gameBufferedReader;
     private PrintStream printStream;
 
-    public Player(String symbol, GameBufferedReader gameBufferedReader, PrintStream printStream) {
+    public Player(char symbol, GameBufferedReader gameBufferedReader, PrintStream printStream) {
         this.symbol = symbol;
         this.gameBufferedReader = gameBufferedReader;
         this.printStream = printStream;
@@ -36,7 +36,7 @@ public class Player {
         return boardPosition;
     }
 
-    public String getSymbol() {
+    public char getSymbol() {
         return symbol;
     }
 }

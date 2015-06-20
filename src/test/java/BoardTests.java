@@ -6,9 +6,7 @@ import java.util.ArrayList;
 
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.MatcherAssert.assertThat;
-import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.times;
-import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.*;
 
 /**
  * Created by cbiggs on 6/18/15.
@@ -17,29 +15,34 @@ public class BoardTests {
 
     private Board board;
     private PrintStream printStream;
-    private ArrayList<String> mockList;
 
     @Before
     public void setUp() {
         printStream = mock(PrintStream.class);
-        mockList = mock(ArrayList.class);
-        board = new Board(mockList, printStream);
+        board = new Board(new char[10], printStream);
     }
 
     @Test
-    public void shouldPrintBoardWhenPrintBoardMethodIsCalled() {
+    public void shouldPrintEmptyBoardWhenBoardIsInitialized() {
         board.printBoard();
-        verify(printStream).println("" +
-                "   |   |   \n" +
+        verify(printStream).printf("" +
+                " %c | %c | %c \n" +
                 "-----------\n" +
-                "   |   |   \n" +
+                " %c | %c | %c \n" +
                 "-----------\n" +
-                "   |   |   ");
+                " %c | %c | %c ", ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ');
     }
 
     @Test
-    public void positionShouldNotBeAvailableAfterMarkingPosition() {
-        board.updateBoard(1, "X");
-        assertThat(board.isPositionAvailable(1), is(false));
+    public void shouldPutMarkInCorrectPositionWhenPlayerChoosesPositionAtStart() {
+        board.updateBoard(1, 'X');
+        board.updateBoard(2, 'O');
+        board.printBoard();
+        verify(printStream).printf("" +
+                " %c | %c | %c \n" +
+                "-----------\n" +
+                " %c | %c | %c \n" +
+                "-----------\n" +
+                " %c | %c | %c ", 'X', 'O', ' ', ' ', ' ', ' ', ' ', ' ', ' ');
     }
 }

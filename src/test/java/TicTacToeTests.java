@@ -17,15 +17,17 @@ public class TicTacToeTests {
     private PrintStream printStream;
     private GameBufferedReader gameBufferedReader;
     private Board board;
-    private Player player;
+    private Player player1;
+    private Player player2;
 
     @Before
     public void setUp() {
         printStream = mock(PrintStream.class);
         gameBufferedReader = mock(GameBufferedReader.class);
         board = mock(Board.class);
-        player = mock(Player.class);
-        ticTacToe = new TicTacToe(board, gameBufferedReader, printStream);
+        player1 = mock(Player.class);
+        player2 = mock(Player.class);
+        ticTacToe = new TicTacToe(board, player1, player2, gameBufferedReader, printStream);
     }
 
     @Test
@@ -33,5 +35,13 @@ public class TicTacToeTests {
         when(gameBufferedReader.readLine()).thenReturn("1");
         ticTacToe.playGame();
         verify(board).printBoard();
+    }
+
+    @Test
+    public void shouldPromptPlayerAndUpdateBoard() {
+        when(player1.getNextMove()).thenReturn(1);
+        when(player1.getSymbol()).thenReturn('X');
+        ticTacToe.playGame();
+        verify(board).updateBoard(player1.getNextMove(), player1.getSymbol());
     }
 }
