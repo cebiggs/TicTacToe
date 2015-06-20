@@ -17,14 +17,12 @@ public class Board {
     }
 
     public void printBoard() {
-        for(int i = 1; i <= 5; i++) {
-            if (i%2 == 1) {
-                printStream.println("   |   |");
-            }
-            else {
-                printStream.println("-----------");
-            }
-        }
+        printStream.println("" +
+                "   |   |   \n" +
+                "-----------\n" +
+                "   |   |   \n" +
+                "-----------\n" +
+                "   |   |   ");
     }
 
     public void updateBoard(int index, String mark) {

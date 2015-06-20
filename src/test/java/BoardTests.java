@@ -29,8 +29,12 @@ public class BoardTests {
     @Test
     public void shouldPrintBoardWhenPrintBoardMethodIsCalled() {
         board.printBoard();
-        verify(printStream, times(3)).println("   |   |");
-        verify(printStream, times(2)).println("-----------");
+        verify(printStream).println("" +
+                "   |   |   \n" +
+                "-----------\n" +
+                "   |   |   \n" +
+                "-----------\n" +
+                "   |   |   ");
     }
 
     @Test

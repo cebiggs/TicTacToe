@@ -6,16 +6,17 @@ import java.io.Reader;
 /**
  * Created by cbiggs on 6/18/15.
  */
-public class GameBufferedReader extends BufferedReader {
+public class GameBufferedReader {
 
-    public GameBufferedReader(Reader in) {
-        super(in);
+    private BufferedReader bufferedReader;
+
+    public GameBufferedReader(BufferedReader bufferedReader) {
+        this.bufferedReader = bufferedReader;
     }
 
-    @Override
     public String readLine() {
         try {
-            return super.readLine();
+            return bufferedReader.readLine();
         } catch (IOException e) {
             throw new RuntimeIOException(e);
         }
