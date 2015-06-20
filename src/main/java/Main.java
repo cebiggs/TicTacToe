@@ -13,7 +13,7 @@ public class Main {
         Board board = new Board(new char[10], System.out);
         Player player1 = new Player('X', gameBufferedReader, printStream);
         Player player2 = new Player('O', gameBufferedReader, printStream);
-        TicTacToe ticTacToe = new TicTacToe(board, player1, player2);
+        TicTacToe ticTacToe = new TicTacToe(board, player1, player2, printStream);
         ticTacToe.playGame();
     }
 }

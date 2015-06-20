@@ -30,7 +30,7 @@ public class BoardTests {
                 "-----------\n" +
                 " %c | %c | %c \n" +
                 "-----------\n" +
-                " %c | %c | %c ", ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ');
+                " %c | %c | %c \n", ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ');
     }
 
     @Test
@@ -43,6 +43,25 @@ public class BoardTests {
                 "-----------\n" +
                 " %c | %c | %c \n" +
                 "-----------\n" +
-                " %c | %c | %c ", 'X', 'O', ' ', ' ', ' ', ' ', ' ', ' ', ' ');
+                " %c | %c | %c \n", 'X', 'O', ' ', ' ', ' ', ' ', ' ', ' ', ' ');
     }
+
+    @Test
+    public void shouldReturnFalseIfPositionAlreadyTaken() {
+        board.updateBoard(1, 'X');
+        assertThat(board.updateBoard(1, 'O'), is(false));
+
+    }
+
+    @Test
+    public void shouldNotUpdateBoardIfPositionIsAlreadyTaken() {
+        board.updateBoard(1, 'X');
+        board.updateBoard(1, 'O');
+        board.printBoard();
+        verify(printStream).printf("" +
+                " %c | %c | %c \n" +
+                "-----------\n" +
+                " %c | %c | %c \n" +
+                "-----------\n" +
+                " %c | %c | %c \n", 'X', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ');    }
 }

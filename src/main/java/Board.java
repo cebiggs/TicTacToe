@@ -25,8 +25,13 @@ public class Board {
                 " %c | %c | %c \n", board[1], board[2], board[3], board[4], board[5], board[6], board[7], board[8], board[9]);
     }
 
-    public void updateBoard(int index, char mark) {
-        board[index] = mark;
+    public boolean updateBoard(int index, char mark) {
+        boolean wasSuccessful = false;
+        if ( board[index] == ' ' ) {
+            board[index] = mark;
+            wasSuccessful = true;
+        }
+        return wasSuccessful;
     }
 
     private void initializeBoard() {
