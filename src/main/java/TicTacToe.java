@@ -23,6 +23,8 @@ public class TicTacToe {
         board.printBoard();
         board.updateBoard(player1.getNextMove(), player1.getSymbol());
         board.printBoard();
+        board.updateBoard(player2.getNextMove(), player2.getSymbol());
+        board.printBoard();
     }
 
 }

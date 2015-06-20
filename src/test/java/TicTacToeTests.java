@@ -39,11 +39,20 @@ public class TicTacToeTests {
     }
 
     @Test
-    public void shouldPromptPlayerAndUpdateBoard() {
+    public void shouldPromptPlayer1AndUpdateBoard() {
         when(player1.getNextMove()).thenReturn(1);
         when(player1.getSymbol()).thenReturn('X');
         ticTacToe.playGame();
         verify(board, atLeastOnce()).updateBoard(player1.getNextMove(), player1.getSymbol());
+        verify(board, atLeast(2)).printBoard();
+    }
+
+    @Test
+    public void shouldPromptPlayer2AndUpdateBoard() {
+        when(player2.getNextMove()).thenReturn(2);
+        when(player2.getSymbol()).thenReturn('O');
+        ticTacToe.playGame();
+        verify(board, atLeastOnce()).updateBoard(player2.getNextMove(), player2.getSymbol());
         verify(board, atLeast(2)).printBoard();
     }
 }
