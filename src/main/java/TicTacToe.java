@@ -15,24 +15,10 @@ public class TicTacToe {
         this.gameBufferedReader = gameBufferedReader;
         this.printStream = printStream;
         this.board = board;
-
-        initializePlayers();
     }
 
     public void playGame() {
         board.printBoard();
-
-        printStream.println("Enter a number between 1 and 9.");
-        printStream.print("Player 1: ");
-
-
-
-        board.updateBoard(player1.getNextMove(), player1.getSymbol());
-    }
-
-    private void initializePlayers() {
-        player1 = new Player("X", gameBufferedReader);
-        player2 = new Player("O", gameBufferedReader);
     }
 
 }

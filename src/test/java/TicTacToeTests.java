@@ -34,11 +34,4 @@ public class TicTacToeTests {
         ticTacToe.playGame();
         verify(board).printBoard();
     }
-
-//    @Test
-//    public void shouldGetFirstPlayFromPlayerWhenGameStarts() {
-//        when(gameBufferedReader.readLine()).thenReturn("1");
-//        ticTacToe.playGame();
-//        assertThat(player.getNextMove(), is(1));
-//    }
 }
