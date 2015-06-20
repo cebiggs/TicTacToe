@@ -16,9 +16,10 @@ public class Player {
     }
 
     public int getNextMove() {
+        int boardPosition;
         printStream.print("Enter position between 1 and 9 to make your next move: ");
-
-        return 1;
+        boardPosition = Integer.parseInt(gameBufferedReader.readLine());
+        return boardPosition;
     }
 
     public String getSymbol() {
