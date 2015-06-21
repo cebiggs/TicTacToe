@@ -32,6 +32,7 @@ public class TicTacToeTests {
     @Test
     public void shouldPrintBoardWhenGameStarts() {
         when(gameBufferedReader.readLine()).thenReturn("1");
+        when(board.isFull()).thenReturn(true);
         ticTacToe.playGame();
         verify(board, atLeastOnce()).printBoard();
     }
@@ -40,26 +41,22 @@ public class TicTacToeTests {
     public void shouldPromptPlayer1AndUpdateBoard() {
         when(player1.getNextMove()).thenReturn(1);
         when(player1.getSymbol()).thenReturn('X');
-        when(player2.getNextMove()).thenReturn(2);
-        when(player2.getSymbol()).thenReturn('O');
         when(board.updateBoard(1, 'X')).thenReturn(true);
-        when(board.updateBoard(2, 'O')).thenReturn(true);
-        ticTacToe.playGame();
+        when(board.isFull()).thenReturn(false);
+
+        ticTacToe.updateBoardWithPlayerMove(player1);
         verify(board, atLeastOnce()).updateBoard(player1.getNextMove(), player1.getSymbol());
-        verify(board, atLeast(2)).printBoard();
     }
 
     @Test
     public void shouldPromptPlayer2AndUpdateBoard() {
-        when(player1.getNextMove()).thenReturn(1);
-        when(player1.getSymbol()).thenReturn('X');
         when(player2.getNextMove()).thenReturn(2);
         when(player2.getSymbol()).thenReturn('O');
-        when(board.updateBoard(1, 'X')).thenReturn(true);
         when(board.updateBoard(2, 'O')).thenReturn(true);
-        ticTacToe.playGame();
+        when(board.isFull()).thenReturn(false);
+
+        ticTacToe.updateBoardWithPlayerMove(player2);
         verify(board, atLeastOnce()).updateBoard(player2.getNextMove(), player2.getSymbol());
-        verify(board, atLeast(2)).printBoard();
     }
 
     @Test
@@ -70,7 +67,17 @@ public class TicTacToeTests {
         when(player1.getSymbol()).thenReturn('X');
         when(player2.getNextMove()).thenReturn(1, 2);
         when(player2.getSymbol()).thenReturn('O', 'O');
-        ticTacToe.playGame();
+
+        ticTacToe.updateBoardWithPlayerMove(player1);
+        ticTacToe.updateBoardWithPlayerMove(player2);
+
         verify(printStream).println("Location already taken.");
+    }
+
+    @Test
+    public void shouldNotifyWhenBoardIsFull() {
+        when(board.isFull()).thenReturn(true);
+        ticTacToe.playGame();
+        verify(printStream).println("Game is a draw");
     }
 }

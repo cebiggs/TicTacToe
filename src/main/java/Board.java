@@ -34,9 +34,19 @@ public class Board {
         return wasSuccessful;
     }
 
+    public boolean isFull() {
+        for(int i = 1; i <= 9; i++) {
+            if( board[i] == ' ') {
+                return false;
+            }
+        }
+        return true;
+    }
+
     private void initializeBoard() {
         for(int i = 1; i <= 9; i++) {
             board[i] = ' ';
         }
     }
+
 }

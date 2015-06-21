@@ -63,5 +63,20 @@ public class BoardTests {
                 "-----------\n" +
                 " %c | %c | %c \n" +
                 "-----------\n" +
-                " %c | %c | %c \n", 'X', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ');    }
+                " %c | %c | %c \n", 'X', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ');
+    }
+
+    @Test
+    public void shouldReturnTrueIfBoardIsFull() {
+        board.updateBoard(1, 'X');
+        board.updateBoard(2, 'X');
+        board.updateBoard(3, 'X');
+        board.updateBoard(4, 'X');
+        board.updateBoard(5, 'X');
+        board.updateBoard(6, 'X');
+        board.updateBoard(7, 'X');
+        board.updateBoard(8, 'X');
+        board.updateBoard(9, 'X');
+        assertThat(board.isFull(), is(true));
+    }
 }

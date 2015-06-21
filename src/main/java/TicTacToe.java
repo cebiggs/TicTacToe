@@ -9,23 +9,31 @@ public class TicTacToe {
     private Player player1;
     private Player player2;
     private PrintStream printStream;
+    private boolean gameOver;
 
     public TicTacToe(Board board, Player player1, Player player2, PrintStream printStream) {
         this.board = board;
         this.player1 = player1;
         this.player2 = player2;
         this.printStream = printStream;
+        gameOver = false;
     }
 
     public void playGame() {
-        board.printBoard();
-        updateBoardWithPlayerMove(player1);
-        board.printBoard();
-        updateBoardWithPlayerMove(player2);
-        board.printBoard();
+        while (!gameOver) {
+            board.printBoard();
+            updateBoardWithPlayerMove(player1);
+            board.printBoard();
+            updateBoardWithPlayerMove(player2);
+        }
     }
 
-    private void updateBoardWithPlayerMove(Player player) {
+    public void updateBoardWithPlayerMove(Player player) {
+        if (board.isFull()) {
+            gameOver();
+            return;
+        }
+
         boolean boardUpdatedSuccessfully = board.updateBoard(player.getNextMove(), player.getSymbol());
 
         while (!boardUpdatedSuccessfully) {
@@ -34,4 +42,10 @@ public class TicTacToe {
         }
     }
 
+    private void gameOver() {
+        if(!gameOver) {
+            gameOver = true;
+            printStream.println("Game is a draw");
+        }
+    }
 }
