@@ -79,4 +79,28 @@ public class BoardTests {
         board.updateBoard(9, 'X');
         assertThat(board.isFull(), is(true));
     }
+
+    @Test
+    public void shouldReturnTrueIfThreeInARowHorizontally() {
+        board.updateBoard(1, 'X');
+        board.updateBoard(2, 'X');
+        board.updateBoard(3, 'X');
+        assertThat(board.isThreeInARow('X'), is(true));
+    }
+
+    @Test
+    public void shouldReturnTrueIfThreeInARowVertically() {
+        board.updateBoard(1, 'X');
+        board.updateBoard(4, 'X');
+        board.updateBoard(7, 'X');
+        assertThat(board.isThreeInARow('X'), is(true));
+    }
+
+    @Test
+    public void shouldReturnTrueIfThreeInARowDiagonally() {
+        board.updateBoard(1, 'X');
+        board.updateBoard(5, 'X');
+        board.updateBoard(9, 'X');
+        assertThat(board.isThreeInARow('X'), is(true));
+    }
 }

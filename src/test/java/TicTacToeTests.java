@@ -3,8 +3,6 @@ import org.junit.Test;
 
 import java.io.PrintStream;
 
-import static org.hamcrest.CoreMatchers.is;
-import static org.hamcrest.MatcherAssert.assertThat;
 import static org.mockito.Mockito.*;
 
 /**
@@ -79,5 +77,10 @@ public class TicTacToeTests {
         when(board.isFull()).thenReturn(true);
         ticTacToe.playGame();
         verify(printStream).println("Game is a draw");
+    }
+
+    @Test
+    public void shouldDisplayMessageThatPlayerWinsWhenPlayerHasThreeInARow() {
+
     }
 }
