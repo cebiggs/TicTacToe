@@ -8,8 +8,11 @@ public class Player {
     private char symbol;
     private GameBufferedReader gameBufferedReader;
     private PrintStream printStream;
+    private String playerName;
+    private String name;
 
-    public Player(char symbol, GameBufferedReader gameBufferedReader, PrintStream printStream) {
+    public Player(String playerName, char symbol, GameBufferedReader gameBufferedReader, PrintStream printStream) {
+        this.playerName = playerName;
         this.symbol = symbol;
         this.gameBufferedReader = gameBufferedReader;
         this.printStream = printStream;
@@ -19,8 +22,8 @@ public class Player {
         int boardPosition = 0;
 
         do {
-
-            printStream.print("Enter position between 1 and 9 to make your next move: ");
+            printStream.printf("Enter position between 1 and 9 to make your next move.\n" +
+                                "Player %s: ", playerName);
 
             try {
                 boardPosition = Integer.parseInt(gameBufferedReader.readLine());
@@ -37,5 +40,9 @@ public class Player {
 
     public char getSymbol() {
         return symbol;
+    }
+
+    public String getName() {
+        return name;
     }
 }

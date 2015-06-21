@@ -1,6 +1,5 @@
 import org.junit.Before;
 import org.junit.Test;
-import org.mockito.InOrder;
 
 import java.io.PrintStream;
 
@@ -23,14 +22,15 @@ public class PlayerTests {
     public void setUp() {
         printStream = mock(PrintStream.class);
         gameBufferedReader = mock(GameBufferedReader.class);
-        player = new Player('X', gameBufferedReader, printStream);
+        player = new Player("1", 'X', gameBufferedReader, printStream);
     }
 
     @Test
     public void shouldPromptPlayerForGuess() {
         when(gameBufferedReader.readLine()).thenReturn("1");
         player.getNextMove();
-        verify(printStream).print("Enter position between 1 and 9 to make your next move: ");
+        verify(printStream).printf("Enter position between 1 and 9 to make your next move.\n" +
+                "Player %s: ", "1");
     }
 
     @Test

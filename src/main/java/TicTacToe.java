@@ -59,7 +59,7 @@ public class TicTacToe {
         }
 
         else {
-            printStream.printf("Player %c wins!\n", winningPlayer.getSymbol());
+            printStream.printf("Player %s wins!\n", winningPlayer.getName());
         }
     }
 }

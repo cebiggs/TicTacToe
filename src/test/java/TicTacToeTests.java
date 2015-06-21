@@ -86,7 +86,8 @@ public class TicTacToeTests {
         when(board.updateBoard(1, 'X')).thenReturn(true);
         when(player1.getNextMove()).thenReturn(1);
         when(player1.getSymbol()).thenReturn('X');
+        when(player1.getName()).thenReturn("1");
         ticTacToe.updateBoardWithPlayerMove(player1);
-        verify(printStream).printf("Player %c wins!\n", 'X');
+        verify(printStream).printf("Player %s wins!\n", "1");
     }
 }
