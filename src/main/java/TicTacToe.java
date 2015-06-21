@@ -23,6 +23,10 @@ public class TicTacToe {
         while (!gameOver) {
             board.printBoard();
             updateBoardWithPlayerMove(player1);
+
+            if (gameOver) {
+                break;
+            }
             board.printBoard();
             updateBoardWithPlayerMove(player2);
         }
@@ -30,7 +34,7 @@ public class TicTacToe {
 
     public void updateBoardWithPlayerMove(Player player) {
         if (board.isFull()) {
-            gameOver();
+            gameOver(null);
             return;
         }
 
@@ -40,12 +44,22 @@ public class TicTacToe {
             printStream.println("Location already taken.");
             boardUpdatedSuccessfully = board.updateBoard(player.getNextMove(), player.getSymbol());
         }
+
+        if (board.isThreeInARow(player.getSymbol())) {
+            gameOver(player1);
+        }
     }
 
-    private void gameOver() {
-        if(!gameOver) {
-            gameOver = true;
+    private void gameOver(Player winningPlayer) {
+        gameOver = true;
+        board.printBoard();
+
+        if (winningPlayer == null) {
             printStream.println("Game is a draw");
+        }
+
+        else {
+            printStream.printf("Player %c wins!\n", winningPlayer.getSymbol());
         }
     }
 }

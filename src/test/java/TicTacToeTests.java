@@ -75,12 +75,18 @@ public class TicTacToeTests {
     @Test
     public void shouldNotifyWhenBoardIsFull() {
         when(board.isFull()).thenReturn(true);
+        when(board.updateBoard(1, 'X')).thenReturn(true);
         ticTacToe.playGame();
         verify(printStream).println("Game is a draw");
     }
 
     @Test
     public void shouldDisplayMessageThatPlayerWinsWhenPlayerHasThreeInARow() {
-
+        when(board.isThreeInARow('X')).thenReturn(true);
+        when(board.updateBoard(1, 'X')).thenReturn(true);
+        when(player1.getNextMove()).thenReturn(1);
+        when(player1.getSymbol()).thenReturn('X');
+        ticTacToe.updateBoardWithPlayerMove(player1);
+        verify(printStream).printf("Player %c wins!\n", 'X');
     }
 }
